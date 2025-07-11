@@ -1,0 +1,145 @@
+<header class="sticky top-0 z-40 bg-white dark:bg-gray-800 shadow-sm lg:hidden">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-wattpad-primary"> Stories</a>
+            <div class="flex items-center space-x-4">
+                <button (click)="toggleSearchOverlay()" id="mobileSearchBtn" class="text-gray-700 dark:text-gray-300">
+                    <i class="fas fa-search text-xl"></i>
+                </button>
+                <button id="mobileMenuBtn" class="text-gray-700 dark:text-gray-300">
+                    <i class="fas fa-ellipsis-v text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </header> <!-- Mobile Header End-->
+     <header class="hidden lg:block bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-40">
+  <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+    <div class="flex items-center space-x-10">
+      <a routerLink="/" class="text-2xl font-bold text-wattpad-primary"> Stories</a>
+      <nav class="flex space-x-6">
+        <!-- Browse Menu -->
+        <div class="relative browse-dropdown">
+  <button (click)="toggleDropdown('browse')" class="flex items-center font-medium hover:text-wattpad-primary transition-colors">
+    Browse <i class="fas fa-chevron-down ml-1 text-xs"></i>
+  </button>
+  
+        <div class="mega-menu p-6 grid grid-cols-3 gap-6 bg-white dark:bg-gray-800 shadow-md absolute top-full left-0 z-40"
+       *ngIf="activeDropdown === 'browse'  && categoryColumns.length">
+        
+
+  <div *ngFor="let group of categoryColumns">
+  <h4 class="font-bold mb-3 text-wattpad-dark dark:text-white">Browse</h4>
+  <ul class="space-y-2">
+    <li *ngFor="let name of group">
+  <a [routerLink]="['/category', name.id, name.categoryName]" class="text-wattpad-light dark:text-gray-300 hover:text-wattpad-primary">
+    {{ name.categoryName }}
+  </a>
+</li>
+  </ul>
+</div>
+
+
+</div>
+                      </div>
+
+        <!-- Write Dropdown -->
+       <div class="relative write-dropdown">
+  <button (click)="toggleDropdown('write')" class="flex items-center font-medium hover:text-wattpad-primary transition-colors">
+    Write <i class="fas fa-chevron-down ml-1 text-xs"></i>
+  </button>
+  <div class="dropdown-menu w-48 py-2 rounded-md absolute bg-white dark:bg-gray-900 shadow-md mt-2 z-40"
+       *ngIf="activeDropdown === 'write'">
+            <a (click)="createNewStory()" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">Write New Story</a>
+            <a (click)="navigateToMyWorks()" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">My Stories</a>
+            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">Writing Competitions</a>
+          </div>
+        </div>
+
+        <a href="#" class="font-medium hover:text-wattpad-primary transition-colors">Community</a>
+      </nav>
+    </div>
+
+    <!-- Right Buttons -->
+    <div class="flex items-center space-x-4">
+      <!-- Search -->
+      <button (click)="toggleSearchOverlay()" class="p-2 hover:text-wattpad-primary">
+        <i class="fas fa-search text-lg"></i>
+      </button>
+
+      <!-- Dark/Light Mode -->
+     <button 
+  id="themeToggle" 
+  (click)="toggleTheme()" 
+  class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+>
+  <i class="fas fa-sun dark:hidden"></i>
+  <i class="fas fa-moon hidden dark:block"></i>
+</button>
+      <!-- login -->
+<a href="login"  *ngIf="!isLoggedIn" class="px-4 py-2 rounded-full font-medium hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">Log In</a>
+      <!-- User Dropdown -->
+      <div class="relative user-dropdown" *ngIf="isLoggedIn">
+  <button (click)="toggleDropdown('user')" class="flex items-center space-x-2">
+    <div class="w-8 h-8 rounded-full bg-wattpad-primary flex items-center justify-center text-white">{{ userName.charAt(0) }}</div>
+    <span class="font-medium">{{userName || 'Guest'}}</span>
+    <i class="fas fa-chevron-down text-xs"></i>
+  </button>
+  <div class="dropdown-menu w-56 py-2 rounded-md absolute right-0 bg-white dark:bg-gray-900 shadow-md mt-2 z-40"
+       *ngIf="activeDropdown === 'user'">
+          <a href="user-profile" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700"><i class="fas fa-user mr-2"></i> My Profile</a>
+          <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700"><i class="fas fa-inbox mr-2"></i> Inbox</a>
+          <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700"><i class="fas fa-bell mr-2"></i> Notifications</a>
+          <a href="library" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700"><i class="fas fa-bookmark mr-2"></i> Library</a>
+          <div class="border-t my-1 dark:border-gray-600"></div>
+          <div class="px-4 py-2 flex justify-between items-center">
+            <span>Language</span>
+            <select class="border rounded px-2 py-1 text-sm dark:bg-gray-700 dark:border-gray-600">
+              <option>English</option>
+              <option>Español</option>
+              <option>Français</option>
+            </select>
+          </div>
+          <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700"><i class="fas fa-question-circle mr-2"></i> Help</a>
+          <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700"><i class="fas fa-cog mr-2"></i> Settings</a>
+          <div class="border-t my-1 dark:border-gray-600"></div>
+          <a *ngIf="isLoggedIn" (click)="logout()" class="pointer block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 text-wattpad-primary"><i class="fas fa-sign-out-alt mr-2"></i> Sign out</a>
+        <a *ngIf="!isLoggedIn" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 text-wattpad-primary" href="login"><i class="fas fa-sign-out-alt mr-2"></i> Sign in</a>
+                      
+
+                      
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Search Overlay -->
+<div 
+  *ngIf="searchOverlayActive"
+  [ngClass]="{
+    'search-overlay': true,
+    'fixed inset-0 bg-white dark:bg-gray-800 z-50 p-4': true,
+    'active': searchOverlayActive
+  }">
+
+  <div class="container mx-auto">
+    <div class="flex justify-between items-center mb-6">
+      <h2 class="text-xl font-bold dark:text-white">Search StoryVerse</h2>
+      <button (click)="toggleSearchOverlay()" class="text-gray-500 dark:text-gray-300 hover:text-wattpad-primary">
+        <i class="fas fa-times text-2xl"></i>
+      </button>
+    </div>
+    <div class="relative">
+      <form (submit)="onSearchSubmit($event)">
+        <input type="text" [(ngModel)]="searchText" name="search" (input)="onSearchInput()" placeholder="Search for stories..." class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-wattpad-primary dark:bg-gray-700 dark:text-white">
+        <button type="submit" class="absolute right-3 top-3 text-gray-500 dark:text-gray-300 hover:text-wattpad-primary">
+          <i class="fas fa-search"></i>
+        </button>
+      </form>
+      <ul *ngIf="filteredSuggestions.length" class="absolute z-10 w-full bg-white dark:bg-gray-800 shadow-lg mt-2 rounded-md">
+        <li *ngFor="let suggestion of filteredSuggestions" (click)="selectSuggestion(suggestion)" class="px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer">
+          {{ suggestion.story_title }}
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

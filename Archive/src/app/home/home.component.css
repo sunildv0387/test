@@ -1,0 +1,63 @@
+.swiper {
+    width: 100%;
+    height: auto;
+    position: relative;
+}
+
+.swiper-button-next, .swiper-button-prev {
+    color: #ff0000; 
+    background: #000;
+    padding: 20px;
+    border-radius: 50%; 
+}
+
+.swiper-button-next:hover, .swiper-button-prev:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.swiper-pagination {
+    bottom: 10px;
+}
+.storiesbox h2{
+    font-size: 20px;
+}
+.storyDetails h5{
+    font-size: 16px;
+}
+.storyDetails .graytxt{
+    font-size: 11px;
+    margin-top: 0px;
+    padding-top: 0px;
+}
+.eyeread svg{
+    font-size: 7px;
+}
+.carousel-container {
+    position: relative;
+}
+
+.carousel-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.7);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.3s ease;
+}
+
+.carousel-nav:hover {
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.carousel-nav i {
+    color: #333;
+    font-size: 1.2rem;
+}

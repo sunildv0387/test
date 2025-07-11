@@ -1,0 +1,88 @@
+.readstory{
+    padding: 50px;
+    background: #fff;
+    border: 1px solid #ccc;
+    margin: 0 10px;
+}
+.completeline {
+  width: 0%;
+  height: 5px;
+  background: #429c30;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  transition: width 0.1s ease-out;
+}
+.authorimg {
+    display: -webkit-inline-box;
+    background: #78909c;
+    padding: 14px 25px;
+    border-radius: 100px;
+    color: #fff;
+    font-weight: 700;
+    font-size: 24px;
+    margin-bottom: 9px;
+}
+.social{
+  border: 0;
+  background: none;
+  display: block;
+  margin: 0 auto;
+  padding-bottom: 20px;
+}
+.share{
+  margin-top: 30px;
+  text-align: center;
+
+}
+.nextpart{
+  margin-top: 50px;
+  text-align: center;
+}
+.user{
+  text-align: center;
+}
+.nextpart button{
+  padding: 10px 50px;
+  font-weight: 700;
+  font-size:16px;
+}
+.nextpart button:hover{
+  padding: 10px 50px;
+  font-weight: 700;
+  font-size:16px;
+  border:1px solid #000;
+ 
+}
+.dark .fullscreen-reader.active{
+          color: #000 !important;
+        }
+.dark .fullscreen-reader{
+  background:#1a1b1f !important;
+}
+ .fullscreen-reader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #fff;
+            z-index: 1000;
+            padding: 2rem;
+            overflow-y: auto;
+            display: none;
+        }
+        .fullscreen-reader.active {
+            display: block;
+            color: #000;
+        }
+        .fullscreen-reader.dark {
+            background: #1E1E1E;
+            color: #F8F8F8;
+        }
+        .fullscreen-reader.reading-mode {
+            background: #F5F5DC;
+            color: #333;
+        }
+        

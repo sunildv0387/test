@@ -1,0 +1,15 @@
+{
+  "routes": [
+    "/create-story",
+    "/genres",
+    "/home",
+    "/library",
+    "/login",
+    "/myworks",
+    "/new",
+    "/register",
+    "/search",
+    "/test",
+    "/user-profile"
+  ]
+}

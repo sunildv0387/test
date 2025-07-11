@@ -1,0 +1,32 @@
+
+.box img{
+    width: 50%;
+}
+.allstories{
+    background: #fff;
+    padding: 20px;
+}
+.allstories .box{
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 50px;
+    margin-bottom: 50px !important;
+}
+.delete{
+   
+    border-radius: 100px;
+    padding: 5px 12px;
+    margin-left: 20px;
+    display: inline;
+}
+.delete:hover{
+    background: #ccc;
+}
+.delete svg{
+    font-size: 20px;
+}
+.allstories p{
+    font-size: 12px;
+}
+.boximg{
+    text-align: center;
+}

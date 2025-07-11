@@ -1,0 +1,100 @@
+<!-- <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm">
+  <div class="flex justify-between items-center mb-6">
+                <h2 class="text-xl font-bold">Comments (10)</h2>
+                <button id="toggleComments" class="text-wattpad-primary hover:underline">और देखे</button>
+            </div>
+
+  <div class="form">
+    <div class="commentmainbox">
+<input id="comment-text" class="commentbox" [(ngModel)]="commentText" placeholder="Write a comment...">
+ <button class="btn btn-primary postbtn" (click)="postComment()"><svg width="15" height="15" viewBox="0 0 24 24"  xmlns="http://www.w3.org/2000/svg"><path d="M10.2424 13.7576L1.59386 9.91382C0.766235 9.54598 0.81481 8.35534 1.66965 8.05615L21.6485 1.06354C21.6779 1.05253 21.7077 1.04296 21.7378 1.03481C22.096 0.935758 22.4419 1.04489 22.6811 1.26776C22.6899 1.27595 22.6985 1.28433 22.7071 1.29289C22.7157 1.30146 22.7241 1.31014 22.7322 1.31893C22.9554 1.55835 23.0645 1.90478 22.9649 2.26344C22.9568 2.29301 22.9474 2.32229 22.9366 2.35116L15.9439 22.3304C15.6447 23.1852 14.454 23.2338 14.0862 22.4061L10.2424 13.7576ZM18.1943 4.39148L4.71107 9.11061L10.7785 11.8073L18.1943 4.39148ZM12.1927 13.2215L14.8894 19.2889L19.6085 5.80568L12.1927 13.2215Z" fill="#fff"></path></svg></button>
+    </div>
+    
+   
+    <button *ngIf="parentId" class="cancel" (click)="parentId = null">Cancel reply</button>
+  </div>
+
+  <div *ngFor="let comment of visibleComments" class="comment">
+    <div class="msg">
+<strong>{{ comment.name }}</strong>: <p class="cmsg">{{ comment.comment }}</p>
+    </div>
+    
+    <button class="reply-btn" (click)="setReply(comment.id)">Reply</button>
+
+    <div class="replies" *ngIf="comment.replies.length > 0">
+      <div *ngFor="let reply of comment.replies" class="comment reply">
+        <strong>{{ reply.name }}</strong>
+        <p>{{ reply.comment }}</p>
+        <button class="reply-btn" (click)="setReply(reply.id)">Reply</button>
+      </div>
+    </div>
+    
+  </div>
+  <div *ngIf="visibleComments.length < comments.length" class="view-more">
+  <button class="btn viewMoreBtnLink" (click)="showMoreComments()">View more comments</button>
+</div>
+</div> -->
+
+ <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-xl font-bold">Comments</h2>
+                <button id="toggleComments" class="text-wattpad-primary hover:underline pointer" (click)="showMoreComments()">और देखे</button>
+            </div>
+            
+            <div id="commentsContainer">
+                                <!-- <div *ngFor="let comment of visibleComments" class="comment">
+    <div class="msg">
+<strong>{{ comment.name }}</strong>: <p class="cmsg">{{ comment.comment }}</p>
+    </div> -->
+                <div class="mb-6 comment-visible" *ngFor="let comment of visibleComments">
+                    <div class="flex items-start space-x-3">
+                        <div class="bg-gray-200 dark:bg-gray-700 w-10 h-10 rounded-full flex items-center justify-center">
+                            <span class="text-gray-500 dark:text-gray-400">{{ comment.name ? comment.name.charAt(0) : 'U' }}</span>
+                        </div>
+       
+
+                        <div class="flex-1">
+                            <div class="bg-gray-100 dark:bg-gray-700 rounded-lg p-3">
+                                <div class="flex items-center justify-between mb-1">
+                                    <span class="font-medium">{{ comment.name }}</span>
+                                    <span class="text-xs text-wattpad-light">2 days ago</span>
+                                </div>
+                                <p class="text-sm">{{ comment.comment }}</p>
+                                <div class="flex items-center mt-2 space-x-4">
+                                    <button class="text-sm text-wattpad-light hover:text-wattpad-primary">
+                                        <i class="fas fa-thumbs-up mr-1"></i> 12
+                                    </button>
+                                    <button class="text-sm text-wattpad-light hover:text-wattpad-primary">
+                                        <i class="fas fa-thumbs-down mr-1"></i> 2
+                                    </button>
+                                    <button class="text-sm text-wattpad-light hover:text-wattpad-primary reply-btn">
+                                        <i class="fas fa-reply mr-1"></i> Reply
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+              
+            </div>
+            
+           <div *ngIf="visibleComments.length < comments.length" class="mt-8 text-center">
+  <button class="bg-wattpad-primary text-white px-8 py-3 rounded-full font-medium hover:bg-[#E5274B] pointer" (click)="showMoreComments()">View more comments</button>
+</div>
+            <div class="mt-6">
+                <div class="flex items-start space-x-3">
+                    <div class="bg-gray-200 dark:bg-gray-700 w-10 h-10 rounded-full flex items-center justify-center">
+                        <span class="text-gray-500 dark:text-gray-400" *ngFor="let comment of visibleComments"></span>
+                    </div>
+                    <div class="flex-1">
+                        <textarea [(ngModel)]="commentText" class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-wattpad-primary" placeholder="Add a comment..." id="comment-text"></textarea>
+                        <div class="flex justify-end mt-2">
+                            <button (click)="postComment()" class="bg-wattpad-primary text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-[#E5274B]">
+                                Post Comment
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
